@@ -9,18 +9,7 @@
 import UIKit
 import AVKit
 
-class ViewController: UIViewController, RecipeResponseListener {
-    var vm: RecipeViewModel?;
-
-    func onRequest() {
-        
-    }
-    
-    func onResponse(response: RecipeResponse?, error: Error?) {
-        print(response)
-    }
-    
-    
+class ViewController: UIViewController {
     var videoPlayer:AVPlayer?
     var videoPlayerLayer:AVPlayerLayer?
 
@@ -30,9 +19,7 @@ class ViewController: UIViewController, RecipeResponseListener {
         super.viewDidLoad()
         setUpElements()
         // Do any additional setup after loading the view.
-        vm = RecipeViewModel(listener: self)
         
-        vm!.searchRecipes(query: "apple")
     }
     
     override func viewWillAppear(_ animated: Bool) {
