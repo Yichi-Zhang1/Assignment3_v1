@@ -15,6 +15,10 @@ class NetworkController: NSObject {
     
     var listener: NetworkListener
     
+    init(listener: NetworkListener) {
+        self.listener = listener
+    }
+    
     func searchRecipes(query: String){
         
         self.listener.onRequest();
