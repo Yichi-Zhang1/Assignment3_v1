@@ -1,5 +1,5 @@
 //
-//  MealPlanResponseLinstener.swift
+//  RecipeResponseListener.swift
 //  Assignment3
 //
 //  Created by Danny on 2020-11-03.
@@ -8,9 +8,9 @@
 
 import Foundation
 
-protocol MealPlanResponseListener: AnyObject {
+protocol NetworkListener: AnyObject {
     
     func onRequest();
     
-    func onResponse(response: MealPlanResponse?, error: Error?);
+    func onResponse(response: AnyObject?, error: Error?);
 }
