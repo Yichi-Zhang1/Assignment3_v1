@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RecipeResponse: NSObject, Codable {
+class RecipeResponse: NSObject, Decodable {
     var offset: Int?;
     var number: Int?;
     var results: [RecipeData]?;

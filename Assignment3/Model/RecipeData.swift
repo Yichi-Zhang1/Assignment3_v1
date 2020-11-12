@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class RecipeData: NSObject, Codable {
+class RecipeData: NSObject, Decodable {
     var id: Int?
     var calories: String?
     var carbs: String?

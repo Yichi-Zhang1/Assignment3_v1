@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MealData: NSObject, Codable{
+class MealData: NSObject, Decodable{
     var id: Int?
     var title: String?
     var imageType: String?

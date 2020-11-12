@@ -8,6 +8,6 @@
 
 import Foundation
 
-class MealPlanResponse: NSObject, Codable{
+class MealPlanResponse: NSObject, Decodable{
     var meals: [MealData]?
 }
