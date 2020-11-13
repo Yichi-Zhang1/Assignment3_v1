@@ -111,6 +111,35 @@ class NetworkController: NSObject {
         
     }
     
+    func imageClassification(url: String){
+        self.listener.onRequest();
+        
+        let searchString = self.apiBaseURL + "/food/images/analyze" + "?apiKey=" + self.apiToken + "&imageUrl=" + url;
+        let jsonURL = URL(string: searchString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!);
+        
+        let task = URLSession.shared.dataTask(with: jsonURL!) { (data, response, error) in
+            
+            do{
+                let decoder = JSONDecoder();
+                
+                let imageAnalysisResponse = try decoder.decode(ImageAnalysisResponse.self, from: data!);
+                
+                DispatchQueue.main.async {
+                    self.listener.onResponse(response: imageAnalysisResponse, error: nil);
+                }
+                
+            } catch let error {
+                print(error);
+                
+                DispatchQueue.main.async {
+                    self.listener.onResponse(response: nil, error: error);
+                }
+            }
+        }
+        
+        task.resume();
+    }
+    
     func imageAnalysis(image: UIImage){
         self.listener.onRequest();
         
@@ -134,8 +163,8 @@ class NetworkController: NSObject {
                     
                     //analysis
                     
-                    let searchString = self.apiBaseURL + "/food/images/analyze" + "?apiKey=" + self.apiToken + "&imageUrl=" + downloadURL.absoluteString
-                    print(searchString)
+                    let searchString = self.apiBaseURL + "/food/images/analyze" + "?apiKey=" + self.apiToken + "&imageUrl=" + downloadURL.absoluteString;
+                    print(searchString);
                     
                     let jsonURL = URL(string: searchString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!);
                     

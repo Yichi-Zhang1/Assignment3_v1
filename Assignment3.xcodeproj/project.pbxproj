@@ -23,6 +23,7 @@
 		84A43F85254D86CD00B9B3CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A43F84254D86CD00B9B3CB /* Constants.swift */; };
 		84A43F92254DAB7200B9B3CB /* loginbg.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 84A43F91254DAB7200B9B3CB /* loginbg.mp4 */; };
 		84A43F94254DADDD00B9B3CB /* loginbg2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 84A43F93254DADDD00B9B3CB /* loginbg2.mp4 */; };
+		84B30CFE255E3D3C0076A33C /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B30CFD255E3D3C0076A33C /* CameraViewController.swift */; };
 		F67BE184255A78B3002D2EE5 /* ImageAnalysisResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67BE183255A78B3002D2EE5 /* ImageAnalysisResponse.swift */; };
 		F697836325502ABC00707F6E /* RecipeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F697836225502ABC00707F6E /* RecipeResponse.swift */; };
 		F69783662550319200707F6E /* RecipeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69783652550319200707F6E /* RecipeData.swift */; };
@@ -53,6 +54,7 @@
 		84A43F84254D86CD00B9B3CB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		84A43F91254DAB7200B9B3CB /* loginbg.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = loginbg.mp4; sourceTree = "<group>"; };
 		84A43F93254DADDD00B9B3CB /* loginbg2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = loginbg2.mp4; sourceTree = "<group>"; };
+		84B30CFD255E3D3C0076A33C /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		F67BE183255A78B3002D2EE5 /* ImageAnalysisResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAnalysisResponse.swift; sourceTree = "<group>"; };
 		F697836225502ABC00707F6E /* RecipeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResponse.swift; sourceTree = "<group>"; };
 		F69783652550319200707F6E /* RecipeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeData.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 		84A43F5E254D381400B9B3CB /* Assignment3 */ = {
 			isa = PBXGroup;
 			children = (
+				84B30CFC255E3CF90076A33C /* ViewController */,
 				F6CD11D325596CE500EB326C /* Network */,
 				F697836125502A7D00707F6E /* Model */,
 				84A43F86254DA06A00B9B3CB /* Meida */,
@@ -150,6 +153,14 @@
 				84A43F93254DADDD00B9B3CB /* loginbg2.mp4 */,
 			);
 			path = Meida;
+			sourceTree = "<group>";
+		};
+		84B30CFC255E3CF90076A33C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84B30CFD255E3D3C0076A33C /* CameraViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		ECD65A1A7E06FC2B153BE45F /* Frameworks */ = {
@@ -317,6 +328,7 @@
 				F6978375255107E500707F6E /* NetworkListener.swift in Sources */,
 				84A43F77254D38A600B9B3CB /* SignUpViewController.swift in Sources */,
 				84A43F85254D86CD00B9B3CB /* Constants.swift in Sources */,
+				84B30CFE255E3D3C0076A33C /* CameraViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
