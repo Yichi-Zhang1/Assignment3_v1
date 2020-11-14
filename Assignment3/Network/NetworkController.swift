@@ -145,7 +145,7 @@ class NetworkController: NSObject {
         
         let storageRef = Storage.storage().reference()
         
-        let imageRef = storageRef.child("1.png")
+        let imageRef = storageRef.child(String(NSDate().timeIntervalSince1970))
         
         let metaData = StorageMetadata()
         metaData.contentType = "image/png"
@@ -163,12 +163,19 @@ class NetworkController: NSObject {
                     
                     //analysis
                     
-                    let searchString = self.apiBaseURL + "/food/images/analyze" + "?apiKey=" + self.apiToken + "&imageUrl=" + downloadURL.absoluteString;
-                    print(searchString);
+//                    let searchString = self.apiBaseURL + "/food/images/analyze" + "?apiKey=" + self.apiToken + "&imageUrl=" + downloadURL.absoluteString;
+//                    print(searchString);
                     
-                    let jsonURL = URL(string: searchString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!);
                     
-                    var request = URLRequest(url: jsonURL!);
+                    let urlParms = [URLQueryItem(name: "apiKey", value: self.apiToken), URLQueryItem(name: "imageUrl", value: downloadURL.absoluteString)];
+                    
+                    var urlComps = URLComponents(string: self.apiBaseURL + "/food/images/analyze")!
+                    
+                    urlComps.queryItems = urlParms
+                    
+                    //print(urlComps.url?.absoluteURL)
+                    
+                    var request = URLRequest(url: urlComps.url!)
                     
                     request.httpMethod = "GET";
                     

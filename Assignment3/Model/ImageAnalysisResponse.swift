@@ -18,7 +18,7 @@ class ImageAnalysisResponse: NSObject, Decodable {
         var id: Int?
         var title: String?
         var imageType: String?
-        var sourceUrl: String?
+        var url: String?
     }
     
     struct Category: Decodable {
