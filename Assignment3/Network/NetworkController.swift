@@ -21,14 +21,59 @@ class NetworkController: NSObject {
         self.listener = listener
     }
     
-    func searchRecipes(query: String){
+    func searchRecipes(query: String, type: String?, diet: String? ,cuisine: [String]?, includeIngredients: [String]?, maxReadyTime: Int?, offset: Int?){
+        
+        var urlComp = URLComponents(string: apiBaseURL + "/recipes/complexSearch")!
+        
+        var urlQueryItems = [URLQueryItem(name: "apiKey", value: apiToken), URLQueryItem(name: "query", value: query)]
+        
+        if type != nil {
+            urlQueryItems.append(URLQueryItem(name: "type", value: type!))
+        }
+        
+        if diet != nil {
+            urlQueryItems.append(URLQueryItem(name: "diet", value: diet!))
+        }
+        
+        if cuisine != nil {
+            var result = ""
+            for str in cuisine! {
+                if result.isEmpty {
+                    result.append(str)
+                }else{
+                    result.append(",")
+                    result.append(str)
+                }
+            }
+            urlQueryItems.append(URLQueryItem(name: "cuisine", value: result))
+        }
+        
+        if includeIngredients != nil {
+            var result = ""
+            for str in includeIngredients! {
+                if result.isEmpty {
+                    result.append(str)
+                }else{
+                    result.append(",")
+                    result.append(str)
+                }
+            }
+            urlQueryItems.append(URLQueryItem(name: "includeIngredients", value: result))
+        }
+        
+        if maxReadyTime != nil {
+            urlQueryItems.append(URLQueryItem(name: "maxReadyTime", value: String(maxReadyTime!)))
+        }
+        
+        if offset != nil {
+            urlQueryItems.append(URLQueryItem(name: "offset", value: String(offset!)))
+        }
+        
+        urlComp.queryItems = urlQueryItems
         
         self.listener.onRequest();
         
-        let searchString = apiBaseURL + "/recipes/complexSearch" + "?query=" + query + "&apiKey=" + apiToken;
-        let jsonURL = URL(string: searchString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!);
-        
-        let task = URLSession.shared.dataTask(with: jsonURL!) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: URLRequest(url: urlComp.url!)) { (data, response, error) in
             
             do{
                 let decoder = JSONDecoder();

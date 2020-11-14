@@ -8,23 +8,12 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, NetworkListener{
-    func onRequest() {
-        
-    }
-    
-    func onResponse(response: AnyObject?, error: Error?) {
-        print(response as! RecipeDetail)
-    }
-    
-    var net: NetworkController?
+class HomeViewController: UIViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        net = NetworkController(listener: self)
-        net?.getRecipeById(id: 716429)
     }
     
 
