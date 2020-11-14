@@ -51,6 +51,38 @@ class NetworkController: NSObject {
         task.resume();
     }
     
+    func getRecipeById(id: Int) {
+        self.listener.onRequest()
+        
+        var urlComp = URLComponents(string: apiBaseURL + "/recipes/" + String(id) + "/information")!
+        
+        let urlQueryItems = [URLQueryItem(name: "apiKey", value: self.apiToken)]
+        
+        urlComp.queryItems = urlQueryItems
+        
+        let task = URLSession.shared.dataTask(with: URLRequest(url: urlComp.url!)) { (data, response, error) in
+            
+            do{
+                let decoder = JSONDecoder();
+                
+                let recipeDetail = try decoder.decode(RecipeDetail.self, from: data!);
+                
+                DispatchQueue.main.async {
+                    self.listener.onResponse(response: recipeDetail, error: nil);
+                }
+                
+            } catch let error {
+                print(error);
+                
+                DispatchQueue.main.async {
+                    self.listener.onResponse(response: nil, error: error);
+                }
+            }
+        }
+        
+        task.resume()
+    }
+    
     func generateMealPlan(){
         self.listener.onRequest();
         
