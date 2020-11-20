@@ -9,6 +9,52 @@
 import Foundation
 
 class RecipeDetail: Codable {
+    struct Nutrition: Codable {
+        struct Nutrient: Codable {
+            let title: String?
+            let amount: Double?
+            let unit: String?
+            let percentOfDailyNeeds: Double?
+        }
+        let nutrients: [Nutrient]?
+        struct Propertie: Codable {
+            let title: String?
+            let amount: Double?
+            let unit: String?
+            
+        }
+        let properties: [Propertie]?
+        struct Flavanoid: Codable {
+            let title: String?
+            let amount: Double?
+            let unit: String?
+        }
+        let flavanoids: [Flavanoid]?
+        struct Ingredient: Codable {
+            let name: String?
+            let amount: Double?
+            let unit: String?
+            struct Nutrient: Codable {
+                let name: String?
+                let amount: Double?
+                let unit: String?
+            }
+            let nutrients: [Nutrient]?
+        }
+        let ingredients: [Ingredient]?
+        struct CaloricBreakdown: Codable {
+            let percentProtein: Double?
+            let percentFat: Double?
+            let percentCarbs: Double?
+        }
+        let caloricBreakdown: CaloricBreakdown?
+        struct WeightPerServing: Codable {
+            let amount: Int?
+            let unit: String?
+        }
+        let weightPerServing: WeightPerServing?
+    }
+    let nutrition: Nutrition
     let veryHealthy: Bool?
     let glutenFree: Bool?
     let summary: String?
@@ -19,7 +65,7 @@ class RecipeDetail: Codable {
     let weightWatcherSmartPoints: Int?
     let gaps: String?
     let sourceUrl: URL?
-    let image: URL?
+    let image: String?
     let creditsText: String?
     let dairyFree: Bool?
     let servings: Int?

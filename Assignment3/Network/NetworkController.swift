@@ -101,7 +101,7 @@ class NetworkController: NSObject {
         
         var urlComp = URLComponents(string: apiBaseURL + "/recipes/" + String(id) + "/information")!
         
-        let urlQueryItems = [URLQueryItem(name: "apiKey", value: self.apiToken)]
+        let urlQueryItems = [URLQueryItem(name: "apiKey", value: self.apiToken),URLQueryItem(name: "includeNutrition", value: "true")]
         
         urlComp.queryItems = urlQueryItems
         
@@ -128,13 +128,28 @@ class NetworkController: NSObject {
         task.resume()
     }
     
-    func generateMealPlan(){
+    func generateMealPlan(targetCalories: Int?, diet: String?, exclude: String?){
         self.listener.onRequest();
         
-        let searchString = apiBaseURL + "/mealplanner/generate?timeFrame=day" + "&apiKey=" + apiToken;
-        let jsonURL = URL(string: searchString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!);
+        var urlComp = URLComponents(string: apiBaseURL + "/mealplanner/generate")!
         
-        let task = URLSession.shared.dataTask(with: jsonURL!) { (data, response, error) in
+        var urlQueryItems = [URLQueryItem(name: "apiKey", value: self.apiToken),URLQueryItem(name: "timeFrame", value: "day")]
+        
+        if targetCalories != nil {
+            urlQueryItems.append(URLQueryItem(name: "targetCalories", value: String(targetCalories!)))
+        }
+        
+        if targetCalories != nil {
+            urlQueryItems.append(URLQueryItem(name: "diet", value: diet!))
+        }
+
+        if targetCalories != nil {
+            urlQueryItems.append(URLQueryItem(name: "exclude", value: exclude!))
+        }
+        
+        urlComp.queryItems = urlQueryItems
+
+        let task = URLSession.shared.dataTask(with: urlComp.url!) { (data, response, error) in
             
             do{
                 let decoder = JSONDecoder();
@@ -156,6 +171,35 @@ class NetworkController: NSObject {
         
         task.resume();
     }
+    
+//    func generateMealPlan(){
+//        self.listener.onRequest();
+//
+//        let searchString = apiBaseURL + "/mealplanner/generate?timeFrame=day" + "&apiKey=" + apiToken;
+//        let jsonURL = URL(string: searchString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!);
+//
+//        let task = URLSession.shared.dataTask(with: jsonURL!) { (data, response, error) in
+//
+//            do{
+//                let decoder = JSONDecoder();
+//
+//                let mealPlanResponse = try decoder.decode(MealPlanResponse.self, from: data!);
+//
+//                DispatchQueue.main.async {
+//                    self.listener.onResponse(response: mealPlanResponse, error: nil);
+//                }
+//
+//            } catch let error {
+//                print(error);
+//
+//                DispatchQueue.main.async {
+//                    self.listener.onResponse(response: nil, error: error);
+//                }
+//            }
+//        }
+//
+//        task.resume();
+//    }
     
     func findQuickAnswer(query: String) {
         self.listener.onRequest();

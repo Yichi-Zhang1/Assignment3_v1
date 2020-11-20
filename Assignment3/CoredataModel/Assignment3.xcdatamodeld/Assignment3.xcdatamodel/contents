@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19G73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Recipe" representedClassName="Recipe" syncable="YES">
+        <attribute name="calories" attributeType="String" defaultValueString=""/>
+        <attribute name="fat" attributeType="String" defaultValueString=""/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="image" attributeType="Transformable"/>
+        <attribute name="ingredents" optional="YES" attributeType="Transformable"/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <attribute name="pricePerServing" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="protein" attributeType="String" defaultValueString=""/>
+        <attribute name="readyInMinutes" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="servings" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" attributeType="String" defaultValueString=""/>
+    </entity>
+    <elements>
+        <element name="Recipe" positionX="-63" positionY="-18" width="128" height="208"/>
+    </elements>
+</model>
