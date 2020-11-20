@@ -12,5 +12,5 @@ target 'Assignment3' do
 	pod 'Firebase/Storage'
 	pod 'Firebase/Core'
 	pod 'FirebaseFirestoreSwift'
-
+	pod 'MessageKit'
 end
