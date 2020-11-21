@@ -37,9 +37,7 @@ class RecipeListTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //recipelist = getData()
-        //loadDefaultData()
-        //recipelist = getData()
+        recipelist = getData()
         tableView.reloadData()
         do{
             try print("数据库数量： \(context.count(for: Recipe.fetchRequest()))")
@@ -92,6 +90,8 @@ class RecipeListTableViewController: UITableViewController {
         let anotherViewController = self.storyboard?.instantiateViewController(withIdentifier: "RecipeDetailViewController") as! RecipeDetailViewController
 
         anotherViewController.recipe = recipelist[indexPath.row]
+        anotherViewController.check = false
+        anotherViewController.btn.tag=1
         self.navigationController?.pushViewController(anotherViewController, animated: true)
     }
     
@@ -138,8 +138,11 @@ class RecipeListTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        let destination = segue.destination as! RecipeSearchTableViewController
-        destination.delegate = self
+        
+//        let destination = segue.destination as! RecipeSearchTableViewController
+//        destination.delegate = self
+    
+        
     }
     
     

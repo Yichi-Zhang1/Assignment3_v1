@@ -16,11 +16,9 @@ class RecommondRecipesTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPi
     @IBOutlet weak var calField: UITextField!
     @IBOutlet weak var generateBtn: UIButton!
     
+    var buttonClickCallback:(() -> Void)?
     @IBAction func TappedBtn(_ sender: Any) {
-        let diet = dietField.text ?? "nil"
-        let type = excludeField.text ?? "nil"
-        let cal = calField.text ?? "nil"
-        print("\(diet),\(type),\(cal)")
+        buttonClickCallback?()
     }
     let diet = ["nil","Gluten Free","Ketogenic","Vegetarian","Lacto-Vegetarian","Ovo-Vegetarian","Vegan"]
     let exclude = ["nil","shellfish","olives"]
@@ -53,7 +51,7 @@ class RecommondRecipesTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPi
         calpickerview.dataSource = self
         calField.inputView = calpickerview
         calField.textAlignment = .center
-        calField.attributedPlaceholder = NSAttributedString(string: "choose calories", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black])
+        calField.attributedPlaceholder = NSAttributedString(string: "target calories", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black])
         // Configure the view for the selected state
     }
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

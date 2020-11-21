@@ -58,18 +58,12 @@ class RecipeSearchTableViewController: UITableViewController, UISearchBarDelegat
             }
         }else{
             let res2 = response as! RecipeDetail
-            print("\(recipelist.count)")
-            //print(res2.extendedIngredients?[0].original ?? "没得到详细菜单")
             print("\(res2.title ?? "no result") ,  \(res2.nutrition.nutrients?[0].title ?? "no result") is : \(res2.nutrition.nutrients?[0].amount ?? 0.00)")
             
             //after get the recipe detail object, build the core data object
             let id = res2.id
             let title = res2.title
             let name = query
-            
-            
-            //\(String(format: "%.2f", Float(res2.nutrition.nutrients?[0].amount)))
-            
             
             let calories = "calories : \(res2.nutrition.nutrients?[0].amount ?? 0.00 )g. percent of daily need: \(String(format: "%.2f", Float(res2.nutrition.nutrients?[0].percentOfDailyNeeds ?? 0.0)))%"
             let fat = "fat : \(res2.nutrition.nutrients?[1].amount ?? 0.00)g. percent of daily need: \(String(format: "%.2f", Float(res2.nutrition.nutrients?[1].percentOfDailyNeeds ?? 0.0)))%"
@@ -107,12 +101,19 @@ class RecipeSearchTableViewController: UITableViewController, UISearchBarDelegat
                         newrecipe.image = UIImage(data: data)
                         newrecipe.ingredents = ingredients
                         newrecipe.pricePerServing = price ?? 0.00
-                        //newrecipe.ingredents = ["test1","test2"]
-                        self.delegate?.addNewRecipe(recipe: newrecipe)
+//                        self.delegate?.addNewRecipe(recipe: newrecipe)
+//                        self.saveData()
+//                        self.navigationController?.popViewController(animated: true)
+//                        print("\(ingredients[0] ) haha")
+//                        print("\(newrecipe.id)")
                         self.saveData()
-                        self.navigationController?.popViewController(animated: true)
-                        print("\(ingredients[0] ) haha")
-                        print("\(newrecipe.id)")
+                        let anotherViewController = self.storyboard?.instantiateViewController(withIdentifier: "RecipeDetailViewController") as! RecipeDetailViewController
+
+                        anotherViewController.recipe = newrecipe
+                        anotherViewController.check = false
+                        anotherViewController.btn.tag = 1
+
+                        self.navigationController?.pushViewController(anotherViewController, animated: true)
                     }
                 }
             }
@@ -210,8 +211,28 @@ class RecipeSearchTableViewController: UITableViewController, UISearchBarDelegat
         }
         let net = NetworkController(listener: self)
         let recipe = recipelist[indexPath.row]
-        //print("\(recipe.title ?? "no result") id is : \(recipe.id )")
+        
+        //after get the recipe detail object, build the core data object
+        let id = recipe.id
+        //check if there is duplicate data
+        let list = getData()
+        var duplicate = false
+        for i in 0 ..< (list.count){
+            if(list[i].id == id){
+                let alert = UIAlertController(title: "Duplicate data", message: "This recipe has already in the favourite list", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                duplicate = true
+                break
+            }
+        }
+        if(duplicate == true){
+            return
+        }
+        
+        
         net.getRecipeById(id: recipe.id)
+        
     }
     
 

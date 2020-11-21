@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "加载.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "loading.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

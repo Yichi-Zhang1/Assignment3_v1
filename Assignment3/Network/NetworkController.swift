@@ -13,7 +13,8 @@ import FirebaseStorage
 class NetworkController: NSObject {
     
     let apiBaseURL = "https://api.spoonacular.com";
-    let apiToken = "410fe30a635c455aae8aeadb43718cee";
+    //let apiToken = "410fe30a635c455aae8aeadb43718cee";
+    let apiToken = "83e3d9f6c0184a41afda8ee420df6313";
     
     var listener: NetworkListener
     

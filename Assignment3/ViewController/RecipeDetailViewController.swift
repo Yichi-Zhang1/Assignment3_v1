@@ -20,14 +20,84 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var carLabel: UILabel!
     @IBOutlet weak var ingredientLabel: UILabel!
     
-    var recipe: Recipe?
+    @IBOutlet weak var btn: UIButton!
+    @IBAction func tapBtn(_ sender: Any) {
+        print("haha")
+        if(btn.tag == 1){
+            copyrecipe = RecommondRecipe(title: (recipe?.title)!, id: Int(recipe!.id), image: recipe!.image as! UIImage, name: (recipe?.name)!, serving: Int(recipe!.servings), minute: Int(recipe!.readyInMinutes), price: recipe!.pricePerServing, fat: (recipe?.fat)!, protein: (recipe?.protein)!, cal: (recipe?.calories)!, ingredents: (recipe?.ingredents)!)
+            btn.setImage(UIImage(named: "dislike"), for: .normal)
+            btn.tag = 2
+            context.delete(recipe!)
+            saveData()
+            let alert = UIAlertController(title: "Remove", message: "This recipe has been removed from you favourite list", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }else{
+            btn.setImage(UIImage(named: "like"), for: .normal)
+            btn.tag = 1
+            
+            
+            let id = copyrecipe!.id
+            let title = copyrecipe!.title
+            let name = copyrecipe!.name
+            
+            let calories = copyrecipe!.cal
+            let fat = copyrecipe!.fat
+            let protein = copyrecipe!.protein
+            let ready = copyrecipe!.minute
+            let serving = copyrecipe!.serving
+            let price = copyrecipe!.price
+            
+            var ingredients = [""]
+            for index in 0...copyrecipe!.ingredents.count-1{
+                ingredients.append("\(copyrecipe!.ingredents[index] )")
+            }
+            ingredients.removeFirst()
+            //let ingredent = res2.extendedIngredients
+            
+            //image store
+            let image = copyrecipe!.image
+            
+            let newrecipe = Recipe(context: self.context)
+            newrecipe.id = Int64.init("\(id )") ?? 0
+            newrecipe.title = title
+            newrecipe.name = name
+            newrecipe.calories = calories
+            newrecipe.fat = fat
+            newrecipe.protein = protein
+            newrecipe.servings = Int16.init("\(serving )") ?? 0
+            newrecipe.readyInMinutes = Int16.init("\(ready )") ?? 0
+            newrecipe.image = image
+            newrecipe.ingredents = ingredients
+            newrecipe.pricePerServing = price
+            self.saveData()
+            
+            
+            
+            
+            let alert = UIAlertController(title: "Add", message: "This recipe has been added to you favourite list", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
     
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
+    var recipe: Recipe?
+    var copyrecipe: RecommondRecipe?
+    var check: Bool?
     override func viewDidLoad() {
         super.viewDidLoad()
         //print("\(recipe?.calories ?? "no result")")
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
+        if check == true{
+            btn.isHidden = true
+        }else{
+            btn.isHidden = false
+        }
+        
         detailImage.image = recipe?.image as! UIImage as UIImage
         titleLabel.text = recipe?.name
         nameLabel.text = recipe?.title
@@ -47,7 +117,9 @@ class RecipeDetailViewController: UIViewController {
         
     }
     
-
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.popViewController(animated: true)
+    }
     /*
     // MARK: - Navigation
 
@@ -104,6 +176,15 @@ class RecipeDetailViewController: UIViewController {
         }
 
         return bulletList
+    }
+    
+    //保存core数据
+    func saveData(){
+        do{
+            try context.save()
+        }catch{
+            print(error)
+        }
     }
 
 }

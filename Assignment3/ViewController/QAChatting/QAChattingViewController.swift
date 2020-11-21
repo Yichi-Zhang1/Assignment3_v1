@@ -44,6 +44,11 @@ struct Media: MediaItem {
 
 class QAChattingViewController: MessagesViewController {
     
+    
+    
+    @IBAction func tapBtn(_ sender: Any) {
+        
+    }
     let selfSender = Sender(senderId: UUID().uuidString, displayName: "Me")
     let chatbot = Sender(senderId: UUID().uuidString, displayName: "Chatbot")
     
