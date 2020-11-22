@@ -9,11 +9,11 @@
 import UIKit
 import CoreData
 import Firebase
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+class AppDelegate: UIResponder, UIApplicationDelegate , NetworkListener{
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -21,10 +21,76 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //configure the firebase
         FirebaseApp.configure()
         
+        requestNotificationAuthorization()
+        
         return true
     }
+    // MARK: - Network Listener
+    func onRequest() {
+        
+    }
+    
+    func onResponse(response: AnyObject?, error: Error?) {
+        
+    }
+    
+    // MARK: - Notification Service
+    func requestNotificationAuthorization(){
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (auth, error) in
+            if auth {
+                self.initAction()
+                self.initNotification()
+            }
+        }
+        
+        
+    }
+    
+    func initAction(){
+        //define action
+        let addToFavorite = UNNotificationAction(identifier: "addToFavorite", title: "Add to favorite", options: [])
+        
+        //add action to categeroy
+        let categeroy = UNNotificationCategory(identifier: "mealSuggestion", actions: [addToFavorite], intentIdentifiers: [], options: [])
+        
+        //add categeroy to notification framework
+        UNUserNotificationCenter.current().setNotificationCategories([categeroy])
+    }
+    
+    func initNotification(){
+        var mComp = DateComponents()
+        var nComp = DateComponents()
+        var eComp = DateComponents()
+        mComp.hour = 7
+        mComp.minute = 30
+        nComp.hour = 11
+        nComp.minute = 30
+        eComp.hour = 5
+        eComp.minute = 30
+        //eComp.second = 30
+        let mTrigger = UNCalendarNotificationTrigger(dateMatching: mComp, repeats: true)
+        let nTrigger = UNCalendarNotificationTrigger(dateMatching: nComp, repeats: true)
+        let eTrigger = UNCalendarNotificationTrigger(dateMatching: eComp, repeats: true)
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Meal Suggestion"
+        content.body = "Time to prepare meal. No ideas? Come and check it out!"
+        content.sound = UNNotificationSound.default
+        content.categoryIdentifier = "mealSuggestion"
 
-    // MARK: UISceneSession Lifecycle
+        
+        let mRequest = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: mTrigger)
+        let nRequest = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nTrigger)
+        let eRequest = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: eTrigger)
+        
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        UNUserNotificationCenter.current().add(mRequest)
+        UNUserNotificationCenter.current().add(nRequest)
+        UNUserNotificationCenter.current().add(eRequest)
+    }
+    
+
+    // MARK: - UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
