@@ -14,14 +14,20 @@ import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate , NetworkListener{
     
-
+    var plan: [MealData]?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         //configure the firebase
         FirebaseApp.configure()
         
-        requestNotificationAuthorization()
+        let net = NetworkController(listener: self)
+        if plan != nil {
+            requestNotificationAuthorization()
+        }else {
+            net.generateMealPlan(targetCalories: nil, diet: nil, exclude: nil)
+        }
         
         return true
     }
@@ -31,6 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate , NetworkListener{
     }
     
     func onResponse(response: AnyObject?, error: Error?) {
+        let res = response as! MealPlanResponse
+        plan = res.meals!
+        requestNotificationAuthorization()
         
     }
     
@@ -42,7 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate , NetworkListener{
                 self.initNotification()
             }
         }
-        
         
     }
     
@@ -65,23 +73,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate , NetworkListener{
         mComp.minute = 30
         nComp.hour = 11
         nComp.minute = 30
-        eComp.hour = 5
-        eComp.minute = 30
-        //eComp.second = 30
+        //eComp.hour = 17
+        eComp.minute = 25
+        eComp.second = 30
         let mTrigger = UNCalendarNotificationTrigger(dateMatching: mComp, repeats: true)
         let nTrigger = UNCalendarNotificationTrigger(dateMatching: nComp, repeats: true)
         let eTrigger = UNCalendarNotificationTrigger(dateMatching: eComp, repeats: true)
         
-        let content = UNMutableNotificationContent()
-        content.title = "Meal Suggestion"
-        content.body = "Time to prepare meal. No ideas? Come and check it out!"
-        content.sound = UNNotificationSound.default
-        content.categoryIdentifier = "mealSuggestion"
+        let mContent = UNMutableNotificationContent()
+        let nContent = UNMutableNotificationContent()
+        let eContent = UNMutableNotificationContent()
+        
+        mContent.title = "Meal Suggestion"
+        mContent.body = "Time to prepare meal. No ideas? Try to search "  + plan![0].title!
+        mContent.sound = UNNotificationSound.default
+        mContent.categoryIdentifier = "mealSuggestion"
+        
+        nContent.title = "Meal Suggestion"
+        nContent.body = "Time to prepare meal. No ideas? Try to search "  + plan![1].title!
+        nContent.sound = UNNotificationSound.default
+        nContent.categoryIdentifier = "mealSuggestion"
+        
+        eContent.title = "Meal Suggestion"
+        eContent.body = "Time to prepare meal. No ideas? Try to search "  + plan![2].title!
 
         
-        let mRequest = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: mTrigger)
-        let nRequest = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nTrigger)
-        let eRequest = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: eTrigger)
+        let mRequest = UNNotificationRequest(identifier: UUID().uuidString, content: mContent, trigger: mTrigger)
+        let nRequest = UNNotificationRequest(identifier: UUID().uuidString, content: nContent, trigger: nTrigger)
+        let eRequest = UNNotificationRequest(identifier: UUID().uuidString, content: eContent, trigger: eTrigger)
         
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
         UNUserNotificationCenter.current().add(mRequest)
