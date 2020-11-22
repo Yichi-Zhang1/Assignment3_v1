@@ -4,7 +4,7 @@
 //
 //  Created by Danny on 2020-11-21.
 //  Copyright © 2020 admin. All rights reserved.
-//
+//tutorial from https://www.youtube.com/playlist?list=PL5PR3UyfTWvdlk-Qi-dPtJmjTj-2YIMMf
 
 import UIKit
 import MessageKit
@@ -43,12 +43,7 @@ struct Media: MediaItem {
 }
 
 class QAChattingViewController: MessagesViewController {
-    
-    
-    
-    @IBAction func tapBtn(_ sender: Any) {
-        
-    }
+
     let selfSender = Sender(senderId: UUID().uuidString, displayName: "Me")
     let chatbot = Sender(senderId: UUID().uuidString, displayName: "Chatbot")
     

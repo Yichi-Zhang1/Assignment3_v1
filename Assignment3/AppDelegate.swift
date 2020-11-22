@@ -65,6 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , NetworkListener{
         UNUserNotificationCenter.current().setNotificationCategories([categeroy])
     }
     
+    //tutorial from https://www.youtube.com/watch?v=e7cTZ4Tp25I&t=1016s
     func initNotification(){
         var mComp = DateComponents()
         var nComp = DateComponents()

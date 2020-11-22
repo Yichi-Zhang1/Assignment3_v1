@@ -67,7 +67,7 @@
 		8498881C25667823002B64CB /* RecommondRecipesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommondRecipesTableViewController.swift; sourceTree = "<group>"; };
 		8498881E25667837002B64CB /* RecommondRecipesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommondRecipesTableViewCell.swift; sourceTree = "<group>"; };
 		8498882025669BED002B64CB /* RecipeFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeFilterTableViewCell.swift; sourceTree = "<group>"; };
-		84A43F5C254D381400B9B3CB /* Assignment3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignment3.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		84A43F5C254D381400B9B3CB /* YourRecipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourRecipe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84A43F5F254D381400B9B3CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84A43F61254D381400B9B3CB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		84A43F63254D381400B9B3CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 		84A43F5D254D381400B9B3CB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				84A43F5C254D381400B9B3CB /* Assignment3.app */,
+				84A43F5C254D381400B9B3CB /* YourRecipe.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -308,7 +308,7 @@
 			);
 			name = Assignment3;
 			productName = Assignment3;
-			productReference = 84A43F5C254D381400B9B3CB /* Assignment3.app */;
+			productReference = 84A43F5C254D381400B9B3CB /* YourRecipe.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -592,7 +592,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = yichi.Assignment3;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = YourRecipe;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -610,7 +610,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = yichi.Assignment3;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = YourRecipe;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

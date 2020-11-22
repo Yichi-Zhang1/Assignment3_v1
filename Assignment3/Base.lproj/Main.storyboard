@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lIl-Et-G3A">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1go-2R-CiK">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -82,7 +82,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zJC-jL-IqH">
                                         <rect key="frame" x="0.0" y="70" width="334" height="50"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h5A-Rz-rtE">
                                         <rect key="frame" x="0.0" y="140" width="334" height="50"/>
@@ -137,18 +137,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="iBh-fn-K2F"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Chat Bot" id="Nn9-XS-F7L">
-                        <barButtonItem key="leftBarButtonItem" title="Back" image="backward" catalog="system" style="plain" id="Y9A-2i-vgy">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jSc-hR-J0g">
-                                <rect key="frame" x="20" y="7" width="92" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Back"/>
-                                <connections>
-                                    <action selector="tapBtn:" destination="QzU-iJ-VHa" eventType="touchUpInside" id="PdP-Bc-XW7"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Chat Bot" id="Nn9-XS-F7L"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LvH-2O-1aB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -245,7 +234,6 @@
                     <connections>
                         <segue destination="k38-xI-Ltx" kind="relationship" relationship="viewControllers" id="uoC-ud-lYN"/>
                         <segue destination="G4x-gA-pJm" kind="relationship" relationship="viewControllers" id="SHu-Jt-JGC"/>
-                        <segue destination="jqD-y2-4aO" kind="relationship" relationship="viewControllers" id="JQm-PW-52K"/>
                         <segue destination="NAV-pl-NCi" kind="relationship" relationship="viewControllers" id="g4z-us-WAF"/>
                     </connections>
                 </tabBarController>
@@ -293,10 +281,10 @@
                                             </constraints>
                                         </stackView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="esN-Ty-6W6">
-                                            <rect key="frame" x="141" y="47" width="132" height="30"/>
+                                            <rect key="frame" x="120" y="47" width="174" height="30"/>
                                             <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="HtV-Wh-z0d"/>
+                                                <constraint firstAttribute="height" constant="30" id="DVx-NT-aGk"/>
                                             </constraints>
                                             <state key="normal" title="  generate recipes  ">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -307,13 +295,13 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="esN-Ty-6W6" secondAttribute="trailing" constant="121" id="0hQ-k4-VB1"/>
-                                        <constraint firstItem="esN-Ty-6W6" firstAttribute="top" secondItem="zDg-AJ-BMK" secondAttribute="bottom" constant="7" id="FDA-Px-2FD"/>
-                                        <constraint firstItem="esN-Ty-6W6" firstAttribute="bottom" secondItem="YPf-f6-Tme" secondAttribute="bottomMargin" id="NpP-VU-9VI"/>
-                                        <constraint firstItem="esN-Ty-6W6" firstAttribute="leading" secondItem="YPf-f6-Tme" secondAttribute="leadingMargin" constant="121" id="Qqz-rq-b0b"/>
+                                        <constraint firstItem="esN-Ty-6W6" firstAttribute="top" secondItem="zDg-AJ-BMK" secondAttribute="bottom" constant="7" id="2ej-qp-SxQ"/>
                                         <constraint firstItem="zDg-AJ-BMK" firstAttribute="top" secondItem="YPf-f6-Tme" secondAttribute="top" id="XGF-7F-Cae"/>
+                                        <constraint firstItem="esN-Ty-6W6" firstAttribute="bottom" secondItem="YPf-f6-Tme" secondAttribute="bottomMargin" id="Yqn-4i-Pil"/>
                                         <constraint firstAttribute="trailing" secondItem="zDg-AJ-BMK" secondAttribute="trailing" id="bbU-Uo-Y8b"/>
+                                        <constraint firstItem="esN-Ty-6W6" firstAttribute="leading" secondItem="YPf-f6-Tme" secondAttribute="leadingMargin" constant="100" id="c54-jO-5m8"/>
                                         <constraint firstItem="zDg-AJ-BMK" firstAttribute="leading" secondItem="YPf-f6-Tme" secondAttribute="leading" id="wUG-XH-qFH"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="esN-Ty-6W6" secondAttribute="trailing" constant="100" id="yyy-SY-lbZ"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -821,6 +809,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Favirote" id="fyJ-Kf-v94">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="chat" id="Qpq-xk-cAp">
+                            <connections>
+                                <segue destination="jqD-y2-4aO" kind="show" id="APY-aA-aSM"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="Xtg-QZ-pkO">
                             <connections>
                                 <segue destination="ohm-d2-vtj" kind="show" id="9ij-tV-Ogc"/>
@@ -1189,7 +1182,7 @@
                         <viewLayoutGuide key="safeArea" id="0vc-Fm-6h8"/>
                     </view>
                     <navigationItem key="navigationItem" id="Txb-yh-yPN">
-                        <barButtonItem key="rightBarButtonItem" image="喜欢" style="plain" id="X9a-bq-hn6">
+                        <barButtonItem key="rightBarButtonItem" image="like" style="plain" id="X9a-bq-hn6">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cjp-pU-0WB">
                                 <rect key="frame" x="212" y="6" width="182" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1266,6 +1259,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jqD-y2-4aO" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="chat" image="chat" id="4en-9r-mW4"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="rnp-KA-fEC"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FEp-7E-Dwy">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1301,7 +1295,6 @@
     </scenes>
     <resources>
         <image name="Recommond" width="32" height="32"/>
-        <image name="backward" catalog="system" width="128" height="79"/>
         <image name="burger" width="500" height="303"/>
         <image name="category" width="32" height="32"/>
         <image name="chat" width="34" height="32"/>
@@ -1313,6 +1306,5 @@
         <image name="loading" width="64" height="64"/>
         <image name="possibility" width="32" height="32"/>
         <image name="price" width="32" height="32"/>
-        <image name="喜欢" width="32" height="32"/>
     </resources>
 </document>
